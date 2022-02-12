@@ -16,7 +16,7 @@ class Principal extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               RaisedButton(
-                  child: Text("Mostrar alerta!"),
+                  child: Text("Mostrar alerta"),
                   onPressed: () {
                     _mostrarAlerta(context);
                     // print("Se presiono el boton");
