@@ -11,7 +11,7 @@ class _RegistroState extends State<Registro> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: Text("Parcial 1 - Registro"),
       ),
@@ -19,7 +19,7 @@ class _RegistroState extends State<Registro> {
         child: Container(
           decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/img/fondo.png"),
+                  image: AssetImage("assets/img/fondo.png"),
                   // image: NetworkImage(
                   //     "https://wallpaperaccess.com/full/797185.png"),
                   fit: BoxFit.cover)),
@@ -27,17 +27,19 @@ class _RegistroState extends State<Registro> {
             children: <Widget>[
               Center(
                 child: Container(
-                  margin: const EdgeInsets.only(top: 60),
+                  margin: const EdgeInsets.only(top: 15),
                   child: Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
+                        logo(),
                         campoNombreApellidos(),
                         campoUsername(),
                         campoEmail(),
                         campoTelefono(),
+                        campoDireccion(),
                         campoPassword(),
-                        campoRePassword(),
+                        // campoRePassword(),
                         botonCancelar(),
                         botonGuardar()
                       ],
@@ -47,33 +49,6 @@ class _RegistroState extends State<Registro> {
               )
             ],
           ),
-          // shrinkWrap: true,
-          // children: <Widget>[
-          //   Center(
-          //     child: Container(
-          //       decoration: BoxDecoration(
-          //           image: DecorationImage(
-          //               image: NetworkImage(
-          //                   "https://wallpaperaccess.com/full/797185.png"),
-          //               fit: BoxFit.cover)),
-          //       child: Center(
-          //         child: Column(
-          //           mainAxisAlignment: MainAxisAlignment.center,
-          //           children: <Widget>[
-          //             campoNombreApellidos(),
-          //             campoUsername(),
-          //             campoEmail(),
-          //             campoTelefono(),
-          //             campoPassword(),
-          //             campoRePassword(),
-          //             botonCancelar(),
-          //             botonGuardar()
-          //           ],
-          //         ),
-          //       ),
-          //     ),
-          //   )
-          // ],
         ),
       ),
       // body: Container(
@@ -102,8 +77,19 @@ class _RegistroState extends State<Registro> {
   }
 }
 
+Widget logo() {
+  return Container(
+      width: 50.0,
+      height: 50.0,
+      decoration: BoxDecoration(
+          image: DecorationImage(
+                  image: AssetImage("assets/img/profile.png"),
+              fit: BoxFit.cover)));
+}
+
 Widget campoNombreApellidos() {
   return Container(
+    height: 50,
     padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
     child: Row(
       children: [
@@ -137,6 +123,7 @@ Widget campoNombreApellidos() {
 
 Widget campoUsername() {
   return Container(
+      height: 50,
       padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
       child: TextField(
         decoration: InputDecoration(
@@ -150,6 +137,7 @@ Widget campoUsername() {
 
 Widget campoEmail() {
   return Container(
+      height: 50,
       padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
       child: TextField(
         decoration: InputDecoration(
@@ -163,6 +151,7 @@ Widget campoEmail() {
 
 Widget campoTelefono() {
   return Container(
+      height: 50,
       padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
       child: TextField(
         decoration: InputDecoration(
@@ -176,30 +165,36 @@ Widget campoTelefono() {
 
 Widget campoPassword() {
   return Container(
-      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-      child: TextField(
-        obscureText: true,
-        decoration: InputDecoration(
-          prefixIcon: Icon(Icons.lock),
-          hintText: "Password",
-          fillColor: Colors.white,
-          filled: true,
+    height: 50,
+    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+    child: Row(
+      children: [
+        Expanded(
+          child: TextField(
+            decoration: InputDecoration(
+              prefixIcon: Icon(Icons.lock_clock_outlined),
+              hintText: "Password",
+              fillColor: Colors.white,
+              filled: true,
+            ),
+          ),
         ),
-      ));
-}
-
-Widget campoRePassword() {
-  return Container(
-      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-      child: TextField(
-        obscureText: true,
-        decoration: InputDecoration(
-          prefixIcon: Icon(Icons.lock_clock_outlined),
-          hintText: "Confirm password",
-          fillColor: Colors.white,
-          filled: true,
+        SizedBox(
+          width: 10,
         ),
-      ));
+        Expanded(
+          child: TextField(
+            decoration: InputDecoration(
+              prefixIcon: Icon(Icons.lock_clock_outlined),
+              hintText: "Confirm password",
+              fillColor: Colors.white,
+              filled: true,
+            ),
+          ),
+        )
+      ],
+    ),
+  );
 }
 
 Widget botonCancelar() {
@@ -218,4 +213,21 @@ Widget botonGuardar() {
     textColor: Colors.white,
     onPressed: () {},
   );
+}
+
+Widget campoDireccion() {
+  return Container(
+      // height: 50,
+      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+      child: TextField(
+        keyboardType: TextInputType.multiline,
+        minLines: 1, //Normal textInputField will be displayed
+        maxLines: 4, // when user presses enter it will adapt to it
+        decoration: InputDecoration(
+          prefixIcon: Icon(Icons.location_city),
+          hintText: "Direccion",
+          fillColor: Colors.white,
+          filled: true,
+        ),
+      ));
 }
