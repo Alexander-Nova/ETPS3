@@ -17,6 +17,11 @@ class APProute extends StatefulWidget {
 
 class _APProuteState extends State<APProute> {
   int _paginaActual = 0;
+  List<Widget> _paginas= [
+    PaginaPrincipal(),
+    Usuario(),
+    Ajustes()
+  ]
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -26,7 +31,7 @@ class _APProuteState extends State<APProute> {
         appBar: AppBar(
           title: Text("Nombre app"),
         ),
-        body: _paginaActual == 0 ? PaginaPrincipal() : Usuario() ,
+        body:  _paginas[] ,
         // Center(
         //   child: Container(
         //     child: Text(
